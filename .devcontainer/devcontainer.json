@@ -1,0 +1,16 @@
+{
+  "name": "HashNode",
+  "image": "mcr.microsoft.com/vscode/devcontainers/typescript-node:0-12",
+  "forwardPorts": [
+    30000,
+    5433
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "TabNine.tabnine-vscode"
+      ]
+    }
+  }
+}

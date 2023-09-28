@@ -1,0 +1,13 @@
+version: '1'
+
+services:
+  nginx:
+    image: nginx:alpine
+    platform: linux/x86_64
+  pg_dev:
+    image: postgres:alpine
+    platform: linux/x86_64
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: testing
+      POSTGRES_HOST_AUTH_METHOD: trust

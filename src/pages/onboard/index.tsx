@@ -2,35 +2,44 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Divider } from "~/component";
+import { Il8n, Sample } from "~/component/sample";
+import { useGlobalContext } from "~/hooks/useGlobal";
 import { Google, Logo } from "~/svgs";
 
 const Onboard = () => {
+  const { local, setLocal } = useGlobalContext()
+  
   return (
     <>
-      <header className="flex items-center justify-center border-b border-border-light bg-white p-4 dark:border-border dark:bg-primary">
+      <header className="flex justify-between border-b border-border-light bg-white p-4 dark:border-border dark:bg-primary">
+        <div></div>
         <Link href="/">
           <Logo className="h-9 fill-secondary" />
         </Link>
+        <div className="w-25" onClick={() => {
+            if (local === 'en') setLocal('zh')
+            else setLocal('en')
+        }}><Il8n en='change language' zh='切换语言'/></div>
       </header>
 
       <main className="min-h-[100dvh] bg-light-bg dark:bg-black">
         <div className="mx-auto flex max-w-[1440px] gap-0 px-4 py-28 md:gap-8 lg:gap-20 xl:gap-28">
           <div className="flex w-full flex-col justify-center">
             <h1 className="mx-auto mb-5 items-center text-3xl font-semibold text-secondary">
-              Sign up / Log in
+              <Il8n en='Sign up / Log in' zh='注册 / 登录'/>
             </h1>
 
             <div className="mb-5 flex flex-wrap justify-center gap-4">
               <button
-                onClick={() =>
-                  void signIn("google", {
-                    callbackUrl: process.env.NEXT_PUBLIC_VERCEL_URL,
-                  })
-                }
+                // onClick={() =>
+                  // void signIn("google", {
+                  //   callbackUrl: process.env.NEXT_PUBLIC_VERCEL_URL,
+                  // })
+                // }
                 className="btn-oauth w-full lg:w-auto"
               >
                 <Google className="h-5 w-5 fill-gray-700 dark:fill-white" />
-                <span>Continue with Google</span>
+                <span><Il8n en='Continue with Google' zh='谷歌登录' /></span>
               </button>
               {/* <button
                 onClick={() =>
@@ -62,7 +71,10 @@ const Onboard = () => {
                 className="input-oauth mb-3"
               />
 
-              <button className="btn-filled-large w-4/12">Submit</button>
+              <button 
+              className="btn-filled-large w-4/12">
+                <Il8n en='Submit by template' zh='登录 来自 模版' />
+              </button>
             </div>
           </div>
           <div className="hidden w-full md:block md:w-7/12 xl:w-full">
